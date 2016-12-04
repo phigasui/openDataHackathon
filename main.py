@@ -49,6 +49,8 @@ def save():
             [(p, request.form[p]) for p in PARAMS['house']]
         )
 
+        house_data['contents'] = '/'.join(request.form['contents'])
+
         file = request.files['images']
         filename = str(uuid.uuid4()) + file.filename.rsplit('.', 1)[1]
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
@@ -79,7 +81,7 @@ def list():
     c = conn.cursor()
 
     c.execute('''
-    SELECT id, title, img_name, access, point FROM house LIMIT 20
+    SELECT id, title, img_name, access, point, contents FROM house LIMIT 20
     ''')
 
     houses = c.fetchall()
@@ -111,7 +113,8 @@ def init_db():
     img_name,
     tel NOT NULL,
     access NOT NULL,
-    point NOT NULL
+    point NOT NULL,
+    contents
     )''')
     c.execute('''CREATE TABLE IF NOT EXISTS
     voice(
