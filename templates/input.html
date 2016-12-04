@@ -1,56 +1,73 @@
 {% extends "base.html" %}
 {% block head %}
-<title>投稿フォーム</title>
+<title>空き家情報入力</title>
 {% endblock %}
 
 {% block body %}
 <h2>投稿フォーム</h2>
 <section>
   <form action="/save" method="post" id="input_form" enctype="multipart/form-data">
-    <table>
-      <tr>
-        <th>設備とあなたの関係は？</th>
-        <td>
-          <input type="radio" name="relation" value="1" id="relation1"
-            checked="checked">
-          <label for="relation1">持ち主</label>
-          <input type="radio" name="relation" value="2" id="relation2">
-          <label for="relation2">親族</label>
-          <input type="radio" name="relation" value="3" id="relation3">
-          <label for="relation3">第三者</label>
-        </td>
-      </tr>
+  <div class="form-group">
+    <label class="form-label">設備とあなたの関係は</label>
+     <label class="form-radio">
+      <input type="radio" name="relation" value="1" checked="">
+      <i class="form-icon"></i>持ち主
+    </label>
+    <label class="form-radio">
+      <input type="radio" name="relation" value="2">
+      <i class="form-icon"></i> 親族
+    </label>
+    <label class="form-radio">
+      <input type="radio" name="relation" value="3">
+      <i class="form-icon"></i> 第三者
+    </label>
+  </div>
 
-      <tr>
-        <th>管理者名</th>
-        <td><input type="text" name="name"></td>
-      </tr>
+  <div class="form-group">
+    <label class="form-label" for="for="input-name">管理者名</label>
+    <input class="form-input" id="input-name" placeholder="あなたのお名前を入力してください（姓名）">
+  </div>
 
-      <tr>
-        <th>緊急連絡先</th>
-        <td><input type="text" name="tel"></td>
-      </tr>
+  <div class="form-group">
+    <label class="form-label" for="input-tel">ご連絡先</label>
+    <input class="form-input" id="input-tel" placeholder="あなたのご連絡先を入力してください（姓名）">
+  </div>
 
-      <tr>
-        <th>住所、アクセス方法</th>
-        <td><input type="text" name="access"></td>
-      </tr>
+  <div class="form-group">
+    <label class="form-label" for="input-access">空き家までのアクセス方法</label>
+    <input class="form-input" id="input-access" placeholder="アクセス方法を入力してください（住所）">
+  </div>
 
-      <tr>
-        <th>おすすめポイント</th>
-        <td><textarea name="point" rows="4" cols="40">
-        </textarea><br></td>
-      </tr>
+  <div class="form-group">
+    <label class="form-label" for="input-tel">おすすめのポイント</label>
+    <textarea id="input-access" name="point" class="form-input" placeholder="アピールポイントを入力してください"></textarea>
+  </div>
 
-      <tr>
-        <th>画像</th>
-        <td><input type="file" name="images"></td>
-      </tr>
-    </table>
-    <p>間取り、宿泊人、キッチン、トイレ風呂、電気、水道ガス、料金、居住者の有無etc<br></p>
+  <div class="form-group">
+    <label class="form-label" for="input-tel">画像のアップロード</label>
+    <input class="form-input" type="file" id="input-tel">
+  </div>
 
-    <input type="submit" value="アップロード">
-  </form>
+  <div class="form-group">
+    <label class="form-checkbox">
+      <input type="checkbox">
+      <i class="form-icon"></i>キッチン
+      <input type="checkbox">
+      <i class="form-icon"></i>トイレ
+      <input type="checkbox">
+      <i class="form-icon"></i>風呂
+      <input type="checkbox">
+      <i class="form-icon"></i>電気
+      <input type="checkbox">
+      <i class="form-icon"></i>水道ガス
+    </label>
+  </div>
+
+
+  <div class="form-group">
+    <button class="btn btn-primary" type="submit">Submit</button>
+  </div>
+</form>
     </div>
 </section>
 
