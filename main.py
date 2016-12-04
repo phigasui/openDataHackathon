@@ -5,8 +5,15 @@ from flask import Flask
 from flask import request
 from flask import render_template
 import sqlite3
+import uuid
 
 app = Flask(__name__)
+
+params = {
+    'user': ['name'],
+    'house': ['tel', 'access', 'point'],
+    'voice': ['point', 'eval'],
+}
 
 @app.route('/', methods=['GET'])
 def index():
@@ -26,6 +33,14 @@ def input_admin():
 
 @app.route('/complete', methods=['POST'])
 def save():
+    user_data = {}
+    house_data = {}
+
+    user_data['id'] = uuid.uuid1()
+
+    save_db('user', user_data)
+    save_db('house', house_data)
+
     return render_template('complete.html')
 
 @app.route('/complete_voice', methods=['POST'])
@@ -40,13 +55,38 @@ def save_admin():
 def list():
     return render_template('list.html')
 
+def save_db(table, data):
+    conn = sqlite3.connect('db/vacant_house_travel.db')
+    c = conn.cursor()
+    c.execute('''REPLACE INTO {0}
+    ({1}) VALUES({2})'''.format(table, data.keys(), data.values()))
+    conn.commit()
+    conn.close()
+
 def init_db():
     conn = sqlite3.connect('db/vacant_house_travel.db')
     c = conn.cursor()
     c.execute('''CREATE TABLE IF NOT EXISTS
-    house(id, user_id, img_id, point, content)''')
+    house(
+    id INTEGER PRIMARY KEY,
+    user_id NOT NULL,
+    img_id,
+    tel NOT NULL,
+    access NOT NULL,
+    point NOT NULL
+    )''')
     c.execute('''CREATE TABLE IF NOT EXISTS
-    voice(id TEXT, user_id, point, eval)''')
+    voice(
+    id INTEGER PRIMARY KEY,
+    user_id NOT NULL,
+    eval NOT NULL,
+    point)''')
+    c.execute('''CREATE TABLE IF NOT EXISTS
+    user(
+    id TEXT PRIMARY KEY,
+    name NOT NULL,
+    status
+    )''')
 
     conn.commit()
     conn.close()
