@@ -58,8 +58,6 @@ def save():
             [(p, request.form[p]) for p in PARAMS['house']]
         )
 
-        house_data['contents'] = '/'.join(request.form['contents'])
-
         file = request.files['images']
         filename = str(uuid.uuid4()) + file.filename.rsplit('.', 1)[1]
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
