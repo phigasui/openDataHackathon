@@ -1,1 +1,55 @@
-<h1>空家トラベル</h1>
+<!DOCTYPE html>
+<html lang ="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>投稿フォーム</title>
+    <title></title>
+  </head>
+  <body>
+    <h1>空家トラベル</h1>
+    <section>
+      <form action="" method="" id="form">
+        <table>
+          <tr>
+            <th>設備とあなたの関係は？</th>
+            <td><input type="checkbox" name="posession" value="1" checked="checked">持ち主
+              <input type="checkbox" name="not_possesion" value="2">第三者
+              <input type="checkbox" name="posession" value="1">親族</td>
+          </tr>
+
+          <tr>
+            <th>管理者名</th>
+            <td><input type="text" id="name"></td>
+          </tr>
+
+          <tr>
+            <th>緊急連絡先</th>
+            <td><input type="text" id="name"></td>
+          </tr>
+
+          <tr>
+            <th>住所、アクセス方法</th>
+            <td><input type="text" id="name"></td>
+          </tr>
+          <tr>
+            <th>おすすめポイント</th>
+            <td><textarea name="kanso" rows="4" cols="40">
+            </textarea><br></td>
+        </table>
+        <p>間取り、宿泊人、キッチン、トイレ風呂、電気、水道ガス、料金、居住者の有無etc<br></p>
+
+        <input type="submit" value="アップロード">
+      </form>
+    </div>
+    </section>
+
+
+    <script>
+     document.getElementById('form').onsubmit = function() {
+         window.alert('この内容で大丈夫ですか？');
+     };
+    </script>
+
+  </body>
+</html>
