@@ -6,34 +6,38 @@
 {% block body %}
 <h2>投稿フォーム</h2>
 <section>
-  <form action="" method="" id="form">
+  <form action="/save" method="post" id="input_form">
     <table>
       <tr>
         <th>設備とあなたの関係は？</th>
         <td>
-          <input type="checkbox" name="posession" value="1" checked="checked">持ち主
-          <input type="checkbox" name="not_possesion" value="2">第三者
-          <input type="checkbox" name="posession" value="1">親族
+          <input type="radio" name="relation" value="1" id="relation1"
+            checked="checked">
+          <label for="relation1">持ち主</label>
+          <input type="radio" name="relation" value="2" id="relation2">
+          <label for="relation2">親族</label>
+          <input type="radio" name="relation" value="3" id="relation3">
+          <label for="relation3">第三者</label>
         </td>
       </tr>
 
       <tr>
         <th>管理者名</th>
-        <td><input type="text" id="name"></td>
+        <td><input type="text" name="name"></td>
       </tr>
 
       <tr>
         <th>緊急連絡先</th>
-        <td><input type="text" id="name"></td>
+        <td><input type="text" name="tel"></td>
       </tr>
 
       <tr>
         <th>住所、アクセス方法</th>
-        <td><input type="text" id="name"></td>
+        <td><input type="text" name="access"></td>
       </tr>
       <tr>
         <th>おすすめポイント</th>
-        <td><textarea name="kanso" rows="4" cols="40">
+        <td><textarea name="point" rows="4" cols="40">
         </textarea><br></td>
     </table>
     <p>間取り、宿泊人、キッチン、トイレ風呂、電気、水道ガス、料金、居住者の有無etc<br></p>
