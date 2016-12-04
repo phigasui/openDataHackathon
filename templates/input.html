@@ -4,12 +4,15 @@
 {% endblock %}
 
 {% block body %}
-<h2>投稿フォーム</h2>
+<h3>空き家情報入力</h3>
 <section>
   <form action="/save" method="post" id="input_form" enctype="multipart/form-data">
-    <div class="form-group">
-      設備タイトル
-      <input type="text" name="title">
+    <div class="form-group layout-section-form">
+      <label class="form-label">設備タイトル</label>
+      <input class="form-input" id="input-title" name="title" placeholder="例：ジブリの世界のような古民家">
+    </div>
+
+    <div class="form-group layout-section-form">
       <label class="form-label">設備とあなたの関係は</label>
       <label class="form-radio">
         <input type="radio" name="relation" value="1" checked="">
@@ -25,59 +28,62 @@
       </label>
     </div>
 
-    <div class="form-group">
+    <div class="form-group layout-section-form">
       <label class="form-label" for="for="input-name">管理者名</label>
-      <input class="form-input" id="input-name" placeholder="あなたのお名前を入力してください（姓名）">
+      <input class="form-input" id="input-name" placeholder="あなたのお名前を入力してください（姓名　例：田舎太郎）">
     </div>
 
-    <div class="form-group">
+    <div class="form-group layout-section-form">
       <label class="form-label" for="input-tel">ご連絡先</label>
-      <input class="form-input" id="input-tel" placeholder="あなたのご連絡先を入力してください（姓名）">
+      <input class="form-input" id="input-tel" placeholder="あなたのご連絡先を入力してください（例：0909100xxxx）">
     </div>
 
-    <div class="form-group">
+    <div class="form-group layout-section-form">
       <label class="form-label" for="input-access">空き家までのアクセス方法</label>
       <input class="form-input" id="input-access" placeholder="アクセス方法を入力してください（住所）">
     </div>
 
-    <div class="form-group">
+    <div class="form-group layout-section-form">
       <label class="form-label" for="input-tel">おすすめのポイント</label>
-      <textarea id="input-access" name="point" class="form-input" placeholder="アピールポイントを入力してください"></textarea>
+      <textarea id="input-access" name="point" class="form-input" placeholder="例：側に川があり夏は川遊びが楽しめます。蛍を見ることができ、夜は天の川が綺麗に見えます"></textarea>
     </div>
 
-    <div class="form-group">
+    <div class="form-group layout-section-form">
       <label class="form-label" for="input-tel">画像のアップロード</label>
-      <input class="form-input" type="file" id="input-tel">
+      <input type="file" id="input-tel">
     </div>
 
-    <div class="form-group">
+    <div class="form-group layout-section-form">
       <label class="form-checkbox">
         <input type="checkbox">
         <i class="form-icon"></i>キッチン
+      </label>
+      <label class="form-checkbox">
         <input type="checkbox">
         <i class="form-icon"></i>トイレ
+      </label>
+      <label class="form-checkbox">
         <input type="checkbox">
         <i class="form-icon"></i>風呂
+      </label>
+      <label class="form-checkbox">
         <input type="checkbox">
         <i class="form-icon"></i>電気
+      </label>
+      <label class="form-checkbox">
         <input type="checkbox">
-        <i class="form-icon"></i>水道ガス
+        <i class="form-icon"></i>水道
+      </label>
+      <label class="form-checkbox">
+        <input type="checkbox">
+        <i class="form-icon"></i>ガス
       </label>
     </div>
 
-
-    <div class="form-group">
-      <button class="btn btn-primary" type="submit">Submit</button>
+    <div class="form-group layout-section-form">
+      <button id="submit-data" class="btn btn-primary site-background-color" type="submit">Submit</button>
     </div>
   </form>
     </div>
 </section>
-
-
-<script>
- document.getElementById('form').onsubmit = function() {
-     window.alert('この内容で大丈夫ですか？');
- };
-</script>
-
 {% endblock %}
