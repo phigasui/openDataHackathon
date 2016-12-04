@@ -9,6 +9,8 @@ import sqlite3
 import uuid
 from collections import OrderedDict
 import os
+import pandas
+import json
 
 UPLOAD_FOLDER = 'static/uploads'
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
@@ -25,7 +27,14 @@ PARAMS = {
 
 @app.route('/', methods=['GET'])
 def index():
-    return render_template('index.html')
+    data = pandas.read_csv('csv/東栄町基準地価平均下落.csv')
+    price = json.dumps(
+        tuple(zip(
+            map(int, tuple(data['年'])), map(int, tuple(data['基準地価平均(円/m2)'])))
+         )
+    )
+
+    return render_template('index.html', price=price)
 
 @app.route('/input', methods=['GET'])
 def input():
