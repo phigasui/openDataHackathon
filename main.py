@@ -6,6 +6,7 @@ from flask import request
 from flask import render_template
 import sqlite3
 import uuid
+from collections import OrderedDict
 
 app = Flask(__name__)
 
@@ -31,12 +32,18 @@ def input_voice():
 def input_admin():
     return render_template('input_admin.html')
 
-@app.route('/complete', methods=['POST'])
+@app.route('/save', methods=['POST'])
 def save():
-    user_data = {}
-    house_data = {}
+    if request.method == 'POST':
+        user_data = OrderedDict(
+            [(p, request.form[p]) for p in params['user']]
+        )
+        house_data = OrderedDict(
+            [(p, request.form[p]) for p in params['house']]
+        )
 
-    user_data['id'] = uuid.uuid1()
+    user_data['id'] = uuid.uuid1().__str__()
+    house_data['user_id'] = user_data['id']
 
     save_db('user', user_data)
     save_db('house', house_data)
@@ -59,7 +66,9 @@ def save_db(table, data):
     conn = sqlite3.connect('db/vacant_house_travel.db')
     c = conn.cursor()
     c.execute('''REPLACE INTO {0}
-    ({1}) VALUES({2})'''.format(table, data.keys(), data.values()))
+    ({1}) VALUES({2})'''.format(
+        table, ','.join(data.keys()), ','.join(['?'] * len(data))
+    ), tuple(data.values()))
     conn.commit()
     conn.close()
 
