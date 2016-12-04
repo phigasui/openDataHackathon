@@ -5,11 +5,18 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="stylesheet" href="{{ url_for('static', filename='node_modules/spectre/dist/spectre.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <script src="{{ url_for('static', filename='node_modules/jquery/dist/jquery.min.js') }}"></script>
+    <script>
+      $(window).on('load', function(){
+        $('.body-wrapper').fadeIn();
+      });
+    </script> 
     {% block head %}
     {% endblock %}
   </head>
   <body>
-    <header class="navbar">
+    <div class="body-wrapper">
+      <header class="navbar">
       <section class="navbar-section">
         <h1><a href="/">空家トラベル</a></h1>
         <a href="list" class="btn btn-link site-main-color">宿泊する</a>
@@ -19,5 +26,6 @@
     </header>
     {% block body %}
     {% endblock %}
+    </div>
   </body>
 </html>

@@ -1,5 +1,4 @@
 body {
-  padding: 10px 20px;
 }
 
 a {
@@ -20,11 +19,22 @@ a {
   font-size: 14px;
   line-height: 2em;
 }
+/*
+=============================
+layout
+=============================*/
+.body-wrapper {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  opacity: 0;
+}
 
 .layout-section {
   margin: 60px 0; 
 }
 
-.form-icon　{
-  background: #5dc456 !important;
+.layout-section-form {
+  margin: 20px 0; 
 }
