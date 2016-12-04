@@ -6,8 +6,14 @@
 {% block body %}
 <h2>投稿フォーム</h2>
 <section>
-  <form action="/save" method="post" id="input_form" enctype="multipart/form-data">
+  <form action="/save" method="post" id="input_form"
+    enctype="multipart/form-data">
     <table>
+      <tr>
+        <th>建物タイトル</th>
+        <td><input type="text" name="title"></td>
+      </tr>
+
       <tr>
         <th>設備とあなたの関係は？</th>
         <td>

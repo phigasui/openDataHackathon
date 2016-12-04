@@ -12,13 +12,14 @@ import os
 
 UPLOAD_FOLDER = 'static/uploads'
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
+CLEAR_DB = '--clear-db'
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 PARAMS = {
     'user': ['name'],
-    'house': ['tel', 'access', 'point'],
+    'house': ['title', 'relation', 'tel', 'access', 'point'],
     'voice': ['point', 'eval'],
 }
 
@@ -78,7 +79,7 @@ def list():
     c = conn.cursor()
 
     c.execute('''
-    SELECT id, user_id, img_name, access, point FROM house LIMIT 20
+    SELECT id, title, img_name, access, point FROM house LIMIT 20
     ''')
 
     houses = c.fetchall()
@@ -105,6 +106,8 @@ def init_db():
     house(
     id INTEGER PRIMARY KEY,
     user_id NOT NULL,
+    title NOT NULL,
+    relation NOT NULL,
     img_name,
     tel NOT NULL,
     access NOT NULL,
@@ -137,7 +140,8 @@ def delete_db():
 
 if __name__ == '__main__':
     port = int(sys.argv[1])
-    if '--clear-db' in sys.argv:
+    if CLEAR_DB in sys.argv:
         delete_db()
+        sys.argv.remove(CLEAR_DB)
     init_db()
     app.run(host='0.0.0.0', port=port, debug=True)
