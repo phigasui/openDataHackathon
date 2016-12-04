@@ -28,13 +28,12 @@ layout
   margin: 0 auto;
   padding: 10px 20px;
   box-sizing: border-box;
-  opacity: 0;
 }
 
 .layout-section {
-  margin: 60px 0; 
+  margin: 60px 0;
 }
 
 .layout-section-form {
-  margin: 20px 0; 
+  margin: 20px 0;
 }
