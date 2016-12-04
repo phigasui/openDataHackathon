@@ -9,11 +9,14 @@
     {% endblock %}
   </head>
   <body>
-    <ul>
-      <li><a href="list">宿泊する</a></li>
-      <li><a href="input">投稿する</a></li>
-    </ul>
-    <a href="/"><h1>空家トラベル</h1></a>
+    <header class="navbar">
+      <section class="navbar-section">
+        <h1><a href="/">空家トラベル</a></h1>
+        <a href="list" class="btn btn-link site-main-color">宿泊する</a>
+        <a href="input" class="btn btn-link site-main-color">投稿する</a>
+        <a href="#" class="btn btn-primary site-background-color">Sign Up</a>
+      </section>
+    </header>
     {% block body %}
     {% endblock %}
   </body>
