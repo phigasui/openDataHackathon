@@ -24,6 +24,9 @@
       </div>
     </div>
     {% endfor %}
+    {% if not len(houses): %}
+    <p>宿がありません</p>
+    {% endfor %}
   </div>
 </div>
 {% endblock %}
