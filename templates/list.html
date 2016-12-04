@@ -7,18 +7,19 @@
 {% block body %}
 <div translate="no">
   <div class="columns">
-    {% for _ in range(10) %}
+    {% for house in houses %}
     <div class="column col-6">
       <div class="card">
         <div class="card-image">
-          <img class="img-responsive" src="http://i.imgbox.com/gVyLgccq.jpg">
+          <img class="img-responsive"
+            src="{{ url_for('static', filename='uploads/' + house['img_name']) }}">
         </div>
         <div class="card-header">
-          <h2 class="card-title">A Big Plane</h2>
-          <p class="card-meta">Image Uploaded Today</p>
+          <h2 class="card-title">{{ house['title'] }}</h2>
+          <p class="card-meta">{{ house['access'] }}</p>
         </div>
         <div class="card-body">
-          <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+          <p>{{ house['point'] }}</p>
         </div>
       </div>
     </div>

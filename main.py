@@ -10,7 +10,7 @@ import uuid
 from collections import OrderedDict
 import os
 
-UPLOAD_FOLDER = 'uploads'
+UPLOAD_FOLDER = 'static/uploads'
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 
 app = Flask(__name__)
@@ -71,7 +71,19 @@ def save_admin():
 
 @app.route('/list', methods=['GET'])
 def list():
-    return render_template('list.html')
+    conn = sqlite3.connect('db/vacant_house_travel.db')
+    conn.row_factory = lambda c, row: {
+        col[0]: row[idx] for idx, col in enumerate(c.description)
+    }
+    c = conn.cursor()
+
+    c.execute('''
+    SELECT id, user_id, img_name, access, point FROM house LIMIT 20
+    ''')
+
+    houses = c.fetchall()
+
+    return render_template('list.html', houses=houses)
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
