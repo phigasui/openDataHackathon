@@ -1,16 +1,22 @@
 #! /usr/bin/env python
 
-import sys
 from flask import Flask
 from flask import request
 from flask import render_template
+
+import sys
 import sqlite3
 import uuid
 from collections import OrderedDict
+import os
+
+UPLOAD_FOLDER = 'uploads'
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 
 app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-params = {
+PARAMS = {
     'user': ['name'],
     'house': ['tel', 'access', 'point'],
     'voice': ['point', 'eval'],
@@ -36,13 +42,18 @@ def input_admin():
 def save():
     if request.method == 'POST':
         user_data = OrderedDict(
-            [(p, request.form[p]) for p in params['user']]
+            [(p, request.form[p]) for p in PARAMS['user']]
         )
         house_data = OrderedDict(
-            [(p, request.form[p]) for p in params['house']]
+            [(p, request.form[p]) for p in PARAMS['house']]
         )
 
-    user_data['id'] = uuid.uuid1().__str__()
+        file = request.files['images']
+        filename = str(uuid.uuid4()) + file.filename.rsplit('.', 1)[1]
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        house_data['img_name'] = filename
+
+    user_data['id'] = str(uuid.uuid1())
     house_data['user_id'] = user_data['id']
 
     save_db('user', user_data)
@@ -62,6 +73,9 @@ def save_admin():
 def list():
     return render_template('list.html')
 
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
+
 def save_db(table, data):
     conn = sqlite3.connect('db/vacant_house_travel.db')
     c = conn.cursor()
@@ -79,7 +93,7 @@ def init_db():
     house(
     id INTEGER PRIMARY KEY,
     user_id NOT NULL,
-    img_id,
+    img_name,
     tel NOT NULL,
     access NOT NULL,
     point NOT NULL
@@ -100,8 +114,18 @@ def init_db():
     conn.commit()
     conn.close()
 
+def delete_db():
+    conn = sqlite3.connect('db/vacant_house_travel.db')
+    c = conn.cursor()
+    c.execute('''DROP TABLE house''')
+    c.execute('''DROP TABLE voice''')
+    c.execute('''DROP TABLE user''')
+    conn.commit()
+    conn.close()
 
 if __name__ == '__main__':
     port = int(sys.argv[1])
+    if '--clear-db' in sys.argv:
+        delete_db()
     init_db()
     app.run(host='0.0.0.0', port=port, debug=True)

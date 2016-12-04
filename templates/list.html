@@ -8,7 +8,8 @@
 田舎の空き家に安く泊まろう
 <div translate="no">
   <div class="columns">
-    <div class="column col-4">
+    {% for _ in range(10) %}
+    <div class="column col-6">
       <div class="card">
         <div class="card-image">
           <img class="img-responsive" src="http://i.imgbox.com/gVyLgccq.jpg">
@@ -22,76 +23,7 @@
         </div>
       </div>
     </div>
-    <div class="column col-4">
-      <div class="card">
-        <div class="card-header">
-          <h2 class="card-title">A Small Plane</h2>
-          <p class="card-meta">Image Uploaded Yesterday</p>
-        </div>
-        <div class="card-body">
-          <p>Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.</p>
-        </div>
-        <div class="card-image">
-          <img class="img-responsive" src="http://i.imgbox.com/Vor14EZP.jpg">
-        </div>
-      </div>
-    </div>
-    <div class="column col-4">
-      <div class="card">
-        <div class="card-image">
-          <img class="img-responsive" src="http://i.imgbox.com/gVyLgccq.jpg">
-        </div>
-        <div class="card-header">
-          <h2 class="card-title">A Big Plane</h2>
-          <p class="card-meta">Image Uploaded Today</p>
-        </div>
-        <div class="card-body">
-          <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
-        </div>
-      </div>
-    </div>
-    <div class="column col-4">
-      <div class="card">
-        <div class="card-header">
-          <h2 class="card-title">A Small Plane</h2>
-          <p class="card-meta">Image Uploaded Yesterday</p>
-        </div>
-        <div class="card-body">
-          <p>Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.</p>
-        </div>
-        <div class="card-image">
-          <img class="img-responsive" src="http://i.imgbox.com/Vor14EZP.jpg">
-        </div>
-      </div>
-    </div>
-    <div class="column col-4">
-      <div class="card">
-        <div class="card-image">
-          <img class="img-responsive" src="http://i.imgbox.com/gVyLgccq.jpg">
-        </div>
-        <div class="card-header">
-          <h2 class="card-title">A Big Plane</h2>
-          <p class="card-meta">Image Uploaded Today</p>
-        </div>
-        <div class="card-body">
-          <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
-        </div>
-      </div>
-    </div>
-    <div class="column col-4">
-      <div class="card">
-        <div class="card-header">
-          <h2 class="card-title">A Small Plane</h2>
-          <p class="card-meta">Image Uploaded Yesterday</p>
-        </div>
-        <div class="card-body">
-          <p>Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.</p>
-        </div>
-        <div class="card-image">
-          <img class="img-responsive" src="http://i.imgbox.com/Vor14EZP.jpg">
-        </div>
-      </div>
-    </div>
+    {% endfor %}
   </div>
 </div>
 {% endblock %}

@@ -6,7 +6,7 @@
 {% block body %}
 <h2>投稿フォーム</h2>
 <section>
-  <form action="/save" method="post" id="input_form">
+  <form action="/save" method="post" id="input_form" enctype="multipart/form-data">
     <table>
       <tr>
         <th>設備とあなたの関係は？</th>
@@ -35,10 +35,17 @@
         <th>住所、アクセス方法</th>
         <td><input type="text" name="access"></td>
       </tr>
+
       <tr>
         <th>おすすめポイント</th>
         <td><textarea name="point" rows="4" cols="40">
         </textarea><br></td>
+      </tr>
+
+      <tr>
+        <th>画像</th>
+        <td><input type="file" name="images"></td>
+      </tr>
     </table>
     <p>間取り、宿泊人、キッチン、トイレ風呂、電気、水道ガス、料金、居住者の有無etc<br></p>
 
